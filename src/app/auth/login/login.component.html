@@ -1,0 +1,48 @@
+<div class="container">
+  <br />
+  <br />
+  <h1>Login Form</h1>
+  <form #f="ngForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="example@example.com"
+        required
+        [(ngModel)]="loginModel.email"
+        name="email"
+        #email="ngModel"
+        email
+      />
+      <small class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
+      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+        Please enter a valid email!
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        required
+        [(ngModel)]="loginModel.password"
+        name="password"
+        #password="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="password.touched && password.invalid"
+      >
+        Please enter password!
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="f.invalid">
+      Login
+    </button>
+  </form>
+</div>
