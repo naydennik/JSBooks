@@ -4,22 +4,21 @@
   <h1>Login Form</h1>
   <form #f="ngForm" (ngSubmit)="login()">
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="username">Username</label>
       <input
         type="text"
         class="form-control"
-        placeholder="example@example.com"
+        placeholder="Please enter your username"
         required
-        [(ngModel)]="loginModel.email"
-        name="email"
-        #email="ngModel"
-        email
+        [(ngModel)]="model.username"
+        name="username"
+        #username="ngModel"
       />
-      <small class="form-text text-muted"
-        >We'll never share your email with anyone else.</small
+      <div
+        class="alert alert-danger"
+        *ngIf="username.touched && username.invalid"
       >
-      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
-        Please enter a valid email!
+        Please enter your username!
       </div>
     </div>
     <div class="form-group">
@@ -28,9 +27,9 @@
         type="password"
         class="form-control"
         id="password"
-        placeholder="Password"
+        placeholder="Please enter your password"
         required
-        [(ngModel)]="loginModel.password"
+        [(ngModel)]="model.password"
         name="password"
         #password="ngModel"
       />
@@ -38,7 +37,7 @@
         class="alert alert-danger"
         *ngIf="password.touched && password.invalid"
       >
-        Please enter password!
+        Please enter your password!
       </div>
     </div>
     <button type="submit" class="btn btn-success" [disabled]="f.invalid">

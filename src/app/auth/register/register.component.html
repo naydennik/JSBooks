@@ -4,22 +4,28 @@
   <h1>Registration Form</h1>
   <form #r="ngForm" (ngSubmit)="register()">
     <br />
+
     <div class="form-group">
-      <label for="email">Email Address</label>
+      <label for="username">Username</label>
       <input
         type="text"
         class="form-control"
-        id="email"
+        id="username"
         required
-        [(ngModel)]="registerModel.email"
-        name="email"
-        #email="ngModel"
-        email
+        [(ngModel)]="model.username"
+        name="username"
+        #username="ngModel"
+        pattern="^[A-Za-z\d]+$"
       />
-      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
-        Please enter valid email address!
+      <div
+        class="alert alert-danger"
+        *ngIf="username.touched && username.invalid"
+      >
+        Username must start with a capital letter and must contain only letters
+        and digits!
       </div>
     </div>
+
     <div class="form-group">
       <label for="password">Password</label>
       <input
@@ -27,7 +33,7 @@
         class="form-control"
         id="password"
         required
-        [(ngModel)]="registerModel.password"
+        [(ngModel)]="model.password"
         name="password"
         #password="ngModel"
         pattern="^[A-Za-z\d]{4,16}$"
@@ -47,7 +53,7 @@
         class="form-control"
         id="confirmPassword"
         required
-        [(ngModel)]="registerModel.confirmpassword"
+        [(ngModel)]="model.confirmpassword"
         name="confirmpassword"
         #confirmpassword="ngModel"
       />
@@ -67,7 +73,7 @@
         class="form-control"
         id="firstName"
         required
-        [(ngModel)]="registerModel.firstname"
+        [(ngModel)]="model.firstname"
         name="firstname"
         #firstname="ngModel"
         pattern="^[A-Z][a-z]+$"
@@ -86,7 +92,7 @@
         class="form-control"
         id="lastName"
         required
-        [(ngModel)]="registerModel.lastname"
+        [(ngModel)]="model.lastname"
         name="lastname"
         #lastname="ngModel"
         pattern="^[A-Z][a-z]+$"
@@ -99,10 +105,21 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="age">Age</label>
-      <input type="number" class="form-control" id="age" />
+      <label for="email">Email Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        required
+        [(ngModel)]="model.email"
+        name="email"
+        #email="ngModel"
+        email
+      />
+      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+        Please enter valid email address!
+      </div>
     </div>
-
     <button type="submit" class="btn btn-success" [disabled]="r.invalid">
       Register
     </button>

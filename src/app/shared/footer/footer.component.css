@@ -1,6 +1,5 @@
 footer {
-  clear: both;
-  position: middle;
-  height: auto;
-  margin-top: 40%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

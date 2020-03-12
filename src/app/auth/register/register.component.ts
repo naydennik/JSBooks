@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { RegisterModel } from "../models/register.model";
+import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-register",
@@ -7,13 +10,30 @@ import { RegisterModel } from "../models/register.model";
   styleUrls: ["./register.component.css"]
 })
 export class RegisterComponent implements OnInit {
-  registerModel: RegisterModel;
+  model: RegisterModel;
+  registerFailed: boolean;
+  errMessage: string;
 
-  constructor() {
-    this.registerModel = new RegisterModel("", "", "", "", "", 0);
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
+    this.model = new RegisterModel("", "", "", "", "", "");
   }
 
   ngOnInit(): void {}
 
-  register() {}
+  register() {
+    this.authService.register(this.model).subscribe(
+      data => {
+        this.router.navigate(["auth/login"]);
+        this.toastr.success("Successfully registerd!", "Success");
+      },
+      err => {
+        this.errMessage = err.error.description;
+        this.toastr.error(err.error.description, "Error");
+      }
+    );
+  }
 }

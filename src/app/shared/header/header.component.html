@@ -1,37 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">JS Books</a>
-  <button
-    class="navbar-toggler"
-    aria-expanded="false"
-    aria-controls="navbarColor01"
-    aria-label="Toggle navigation"
-    type="button"
-    data-target="#navbarColor01"
-    data-toggle="collapse"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" routerLink="home">JS Books</a>
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"
+      <li class="nav-item" *ngIf="!authService.checkIfLogged()">
+        <a class="nav-link" routerLink="auth/login"
           >Login <span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Register</a>
+      <li class="nav-item" *ngIf="!authService.checkIfLogged()">
+        <a class="nav-link" routerLink="auth/register">Register</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Logout</a>
+      <li class="nav-item" *ngIf="authService.checkIfLogged()">
+        <a class="nav-link" (click)="logout()">Logout</a>
       </li>
-      <li class="nav-item dropdown show">
+      <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
           role="button"
           aria-expanded="true"
           aria-haspopup="true"
-          href="#"
           data-toggle="dropdown"
           (click)="toggle()"
           >Books</a
@@ -41,13 +29,13 @@
           style="left: 0px; top: 0px; position: absolute; transform: translate3d(0px, 40px, 0px);"
           x-placement="bottom-start"
         >
-          <a class="dropdown-item" href="#">All Books</a>
+          <a class="dropdown-item" routerLink="books/all">All Books</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Create Book</a>
+          <a class="dropdown-item" routerLink="books/create">Create Book</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" routerLink="about">About</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

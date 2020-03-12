@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { LoginModel } from "../models/login.model";
+import { AuthService } from "../auth.service";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-login",
@@ -7,12 +10,27 @@ import { LoginModel } from "../models/login.model";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  loginModel: LoginModel;
-  constructor() {
-    this.loginModel = new LoginModel("", "");
+  model: LoginModel;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
+    this.model = new LoginModel("", "");
   }
 
   ngOnInit(): void {}
 
-  login() {}
+  login() {
+    this.authService.login(this.model).subscribe(
+      data => {
+        this.router.navigate(["books/all"]);
+        this.toastr.success("Successfully logged in!", "Success");
+      },
+      err => {
+        this.toastr.error(err.error.description, "Error");
+      }
+    );
+  }
 }
