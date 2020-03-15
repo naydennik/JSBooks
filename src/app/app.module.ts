@@ -10,34 +10,21 @@ import { AppComponent } from "./app.component";
 import { SharedComponent } from "./shared/shared.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
-import { AuthComponent } from "./auth/auth.component";
-import { RegisterComponent } from "./auth/register/register.component";
-import { LoginComponent } from "./auth/login/login.component";
 import { TokenInterceptor } from "./shared/interceptors/token.interceptor";
-import { BooksComponent } from "./books/books.component";
-import { BooksDetailsComponent } from "./books/books-details/books-details.component";
-import { BooksEditComponent } from "./books/books-edit/books-edit.component";
-import { BooksCreateComponent } from "./books/books-create/books-create.component";
-import { BooksAllComponent } from "./books/books-all/books-all.component";
 import { AboutComponent } from "./about/about.component";
 import { HomeComponent } from "./home/home.component";
+import { NgxPaginationModule } from "ngx-pagination";
+import { AuthModule } from "./auth/auth.module";
+import { BooksModule } from "./books/books.module";
 
 @NgModule({
   declarations: [
     AppComponent,
+    AboutComponent,
+    HomeComponent,
     SharedComponent,
     HeaderComponent,
-    FooterComponent,
-    AuthComponent,
-    RegisterComponent,
-    LoginComponent,
-    BooksComponent,
-    BooksAllComponent,
-    BooksDetailsComponent,
-    BooksEditComponent,
-    BooksCreateComponent,
-    AboutComponent,
-    HomeComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +32,10 @@ import { HomeComponent } from "./home/home.component";
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
+    AuthModule,
+    BooksModule
   ],
   providers: [
     {

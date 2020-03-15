@@ -40,35 +40,19 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request).pipe(
-      tap(
-        (event: HttpEvent<any>) => {
-          if (event instanceof HttpResponse && request.url.endsWith("login")) {
-            this.successfulLoginData(event.body);
-          }
-        },
-        (err: any) => {
-          if (err instanceof HttpErrorResponse) {
-            switch (err.status) {
-              case 401:
-                this.router.navigate(["login"]);
-                break;
-              case 404:
-                this.router.navigate(["not-found"]);
-                break;
-              case 500:
-                this.router.navigate(["server-error"]);
-                break;
-            }
-          }
+      tap((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse && request.url.endsWith("login")) {
+          this.successfulLoginData(event.body);
         }
-      )
+      })
     );
   }
 
   private successfulLoginData(data) {
     this.authService.authtoken = data["_kmd"]["authtoken"];
     localStorage.setItem("authtoken", data["_kmd"]["authtoken"]);
+    localStorage.setItem("id", data["_id"]);
     localStorage.setItem("username", data["username"]);
-    this.router.navigate(["/home"]);
+    this.router.navigate(["/books/all"]);
   }
 }

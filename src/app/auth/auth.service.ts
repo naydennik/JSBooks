@@ -4,6 +4,7 @@ import { LoginModel } from "./models/login.model";
 import { RegisterModel } from "./models/register.model";
 
 const appKey = "kid_Hk2nQ-LrU";
+const adminId = "5e6cd5e4b6c55500178b7e5e";
 const registerUrl = `https://baas.kinvey.com/user/${appKey}`;
 const loginUrl = `https://baas.kinvey.com/user/${appKey}/login`;
 const logoutUrl = `https://baas.kinvey.com/user/${appKey}/_logout`;
@@ -30,6 +31,10 @@ export class AuthService {
 
   checkIfLogged() {
     return localStorage.getItem("authtoken") === this.currentAuthtoken;
+  }
+
+  checkIfAdmin() {
+    return localStorage.getItem("id") === adminId;
   }
 
   get authtoken() {

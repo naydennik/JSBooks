@@ -1,1 +1,48 @@
-<p>books-all works!</p>
+<div class="row">
+  <div
+    class="col-lg-4"
+    *ngFor="
+      let book of books
+        | paginate
+          : {
+              id: 'allBooks',
+              itemsPerPage: pageSize,
+              currentPage: currentPage
+            }
+    "
+  >
+    <h2 class="card-header">{{ book.title }}</h2>
+    <div class="card-body">
+      <h3 class="card-title">{{ book.subtitle }}</h3>
+      <h4 class="card-title">Author: {{ book.author }}</h4>
+    </div>
+    <img
+      style="height: 400px; width: 300px;"
+      src="{{ book.imageUrl }}"
+      alt="Card image"
+    />
+    <br />
+    <p class="lead">
+      <a
+        class="btn btn-primary btn-lg"
+        routerLink="../details/{{ book._id }}"
+        role="button"
+        >View Details</a
+      >
+    </p>
+  </div>
+
+  <pagination-controls
+    id="allBooks"
+    (pageChange)="changePage($event)"
+    maxSize="9"
+    directionLinks="true"
+    autoHide="true"
+    previousLable="Previous"
+    nextLable="Next"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLable="page"
+    screenReaderCurrentLabel="You're on page"
+  >
+  </pagination-controls>
+</div>

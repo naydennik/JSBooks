@@ -30,8 +30,12 @@ const routes: Routes = [
     children: [
       { path: "all", component: BooksAllComponent },
       { path: "create", component: BooksCreateComponent },
-      { path: "details/:id", component: BooksDetailsComponent },
-      { path: "edit/:id", component: BooksEditComponent }
+      {
+        path: "details/:id",
+        component: BooksDetailsComponent
+      },
+
+      { path: "details/:id/edit", component: BooksEditComponent }
     ],
     canActivate: [AuthGuard]
   }
