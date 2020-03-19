@@ -1,14 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { RegisterComponent } from "./auth/register/register.component";
-import { LoginComponent } from "./auth/login/login.component";
-import { BooksAllComponent } from "./books/books-all/books-all.component";
-import { BooksCreateComponent } from "./books/books-create/books-create.component";
-import { BooksDetailsComponent } from "./books/books-details/books-details.component";
-import { BooksEditComponent } from "./books/books-edit/books-edit.component";
 import { AboutComponent } from "./about/about.component";
 import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./guards/auth.guard";
+import { BooksModule } from "./books/books.module";
+import { AuthRoutingModule } from "./auth/auth-routing.module";
 
 const routes: Routes = [
   {
@@ -20,23 +16,11 @@ const routes: Routes = [
   { path: "about", component: AboutComponent },
   {
     path: "auth",
-    children: [
-      { path: "register", component: RegisterComponent },
-      { path: "login", component: LoginComponent }
-    ]
+    loadChildren: () => AuthRoutingModule
   },
   {
     path: "books",
-    children: [
-      { path: "all", component: BooksAllComponent },
-      { path: "create", component: BooksCreateComponent },
-      {
-        path: "details/:id",
-        component: BooksDetailsComponent
-      },
-
-      { path: "details/:id/edit", component: BooksEditComponent }
-    ],
+    loadChildren: () => BooksModule,
     canActivate: [AuthGuard]
   }
 ];

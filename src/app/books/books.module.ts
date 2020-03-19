@@ -6,7 +6,7 @@ import { BooksDetailsComponent } from "./books-details/books-details.component";
 import { BooksEditComponent } from "./books-edit/books-edit.component";
 import { FormsModule } from "@angular/forms";
 import { NgxPaginationModule } from "ngx-pagination";
-import { RouterModule } from "@angular/router";
+import { BooksRoutingModule } from "./books-routing.module";
 
 @NgModule({
   declarations: [
@@ -15,6 +15,6 @@ import { RouterModule } from "@angular/router";
     BooksDetailsComponent,
     BooksEditComponent
   ],
-  imports: [CommonModule, FormsModule, NgxPaginationModule, RouterModule]
+  imports: [CommonModule, FormsModule, NgxPaginationModule, BooksRoutingModule]
 })
 export class BooksModule {}
