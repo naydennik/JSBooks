@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 
 import { BooksModel } from "./models/books.model";
 
-const appKey = "kid_Hk2nQ-LrU";
+const appKey = "kid_rkQIJij8U";
 const booksUrl = `https://baas.kinvey.com/appdata/${appKey}/books/`;
 
 @Injectable()

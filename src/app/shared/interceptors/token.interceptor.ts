@@ -13,8 +13,8 @@ import { tap } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 
-const appKey = "kid_Hk2nQ-LrU";
-const appSecret = "db15201ba4fb4287b33d3013b8d47f58";
+const appKey = "kid_rkQIJij8U";
+const appSecret = "8c58a51391de4c9cb5e0279302d15bca";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { LoginModel } from "./models/login.model";
 import { RegisterModel } from "./models/register.model";
 
-const appKey = "kid_Hk2nQ-LrU";
-const adminId = "5e6cd5e4b6c55500178b7e5e";
+const appKey = "kid_rkQIJij8U";
+const adminId = "5e7e26e535ddd40016cdc370";
 const registerUrl = `https://baas.kinvey.com/user/${appKey}`;
 const loginUrl = `https://baas.kinvey.com/user/${appKey}/login`;
 const logoutUrl = `https://baas.kinvey.com/user/${appKey}/_logout`;
