@@ -51,7 +51,7 @@ In the project are used Toastr and Pagination services and Bootstrap library.
 
 ## Setup
 
-To explore the code run `ng install` first.
+To explore the code run `npm install` first.
 
 ## Development server
 
