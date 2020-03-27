@@ -2,8 +2,6 @@
 
 # JS Books
 
-<<<<<<< HEAD
-
 A simple app for creating and viewing books dedicated to Javascript
 
 ## Quick description
@@ -14,10 +12,6 @@ Regular users can create books and view the list with already created books.
 The admins have the rights of regular users and in addition can edit and delete books.
 
 ## Used technology
-
-=======
-
-> > > > > > > f0d1b094b68cf281e2c51d13b5a1c949544436c0
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
