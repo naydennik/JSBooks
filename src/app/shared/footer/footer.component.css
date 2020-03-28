@@ -1,5 +1,7 @@
 .footer {
+  position: relative;
   flex-shrink: 0;
   padding: 50px;
   margin-top: 50px;
+  margin-bottom: 0;
 }
