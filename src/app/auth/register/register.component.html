@@ -11,6 +11,7 @@
         type="text"
         class="form-control"
         id="username"
+        placeholder="Please enter an username"
         required
         [(ngModel)]="model.username"
         name="username"
@@ -19,10 +20,15 @@
       />
       <div
         class="alert alert-danger"
-        *ngIf="username.touched && username.invalid"
+        *ngIf="username.touched && username.value === ''"
       >
-        Username must start with a capital letter and must contain only letters
-        and digits!
+        This field is required!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="username.touched && username.value !== '' && username.invalid"
+      >
+        Username should contain only letters and digits!
       </div>
     </div>
 
@@ -32,6 +38,7 @@
         type="password"
         class="form-control"
         id="password"
+        placeholder="Please enter a password"
         required
         [(ngModel)]="model.password"
         name="password"
@@ -40,10 +47,16 @@
       />
       <div
         class="alert alert-danger"
-        *ngIf="password.touched && password.invalid"
+        *ngIf="password.touched && password.value === ''"
       >
-        Password must contain only letters and digits and must be between 4 and
-        16 symbols!
+        This field is required!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="password.touched && password.invalid && password.value !== ''"
+      >
+        Password should contain only letters and digits and must be between 4
+        and 16 symbols!
       </div>
     </div>
     <div class="form-group">
@@ -52,6 +65,7 @@
         type="password"
         class="form-control"
         id="confirmPassword"
+        placeholder="Please repeat the password"
         required
         [(ngModel)]="model.confirmpassword"
         name="confirmpassword"
@@ -59,8 +73,16 @@
       />
       <div
         class="alert alert-danger"
+        *ngIf="confirmpassword.touched && confirmpassword.value === ''"
+      >
+        This field is required!
+      </div>
+      <div
+        class="alert alert-danger"
         *ngIf="
-          confirmpassword.touched && confirmpassword.value != password.value
+          confirmpassword.touched &&
+          confirmpassword.value != password.value &&
+          confirmpassword.value !== ''
         "
       >
         Password and Confirm Password must match!
@@ -72,17 +94,24 @@
         type="text"
         class="form-control"
         id="firstName"
+        placeholder="Please enter your first name"
         required
         [(ngModel)]="model.firstname"
         name="firstname"
         #firstname="ngModel"
-        pattern="^[A-Z][a-z]+$"
+        pattern="^[A-Z]{1}[A-Za-z]*$"
       />
       <div
         class="alert alert-danger"
-        *ngIf="firstname.touched && firstname.invalid"
+        *ngIf="firstname.touched && firstname.value === ''"
       >
-        First name must contain only letters and start with a capital letter!
+        This field is required!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="firstname.touched && firstname.invalid && firstname.value !== ''"
+      >
+        First name should contain only letters and start with a capital letter!
       </div>
     </div>
     <div class="form-group">
@@ -91,17 +120,24 @@
         type="text"
         class="form-control"
         id="lastName"
+        placeholder="Please enter your last name"
         required
         [(ngModel)]="model.lastname"
         name="lastname"
         #lastname="ngModel"
-        pattern="^[A-Z][a-z]+$"
+        pattern="^[A-Z]{1}[A-Za-z]*$"
       />
       <div
         class="alert alert-danger"
-        *ngIf="lastname.touched && lastname.invalid"
+        *ngIf="lastname.touched && lastname.value === ''"
       >
-        Last name must contain only letters and start with a capital letter!
+        This field is required!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="lastname.touched && lastname.invalid && lastname.value !== ''"
+      >
+        Last name should contain only letters and start with a capital letter!
       </div>
     </div>
     <div class="form-group">
@@ -110,14 +146,24 @@
         type="text"
         class="form-control"
         id="email"
+        placeholder="Please enter your email address"
         required
         [(ngModel)]="model.email"
         name="email"
         #email="ngModel"
-        email
+        pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
       />
-      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
-        Please enter valid email address!
+      <div
+        class="alert alert-danger"
+        *ngIf="email.touched && email.value === ''"
+      >
+        This field is required!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="email.touched && email.invalid && email.value !== ''"
+      >
+        Please enter a valid email address!
       </div>
     </div>
     <button type="submit" class="btn btn-success" [disabled]="r.invalid">

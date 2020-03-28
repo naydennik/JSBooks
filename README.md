@@ -8,8 +8,10 @@ A simple app for creating and viewing books dedicated to Javascript
 
 To enter the app everyone has to register and login first.
 There are two types of users - regular and admins.
-Regular users can create books and view the list with already created books.
-The admins have the rights of regular users and in addition can edit and delete books.
+Regular users can create books and view the list with already created books. To test the regular users experience please create a new account.
+The admins have the rights of regular users and in addition can edit and delete books. To test the admin users experience please use these credentials:
+
+### username: Nayden, password: 1234
 
 ## Used technology
 

@@ -13,12 +13,20 @@
         [(ngModel)]="model.username"
         name="username"
         #username="ngModel"
+        pattern="^[A-Za-z\d]+$"
       />
       <div
         class="alert alert-danger"
-        *ngIf="username.touched && username.invalid"
+        *ngIf="username.touched && username.value === ''"
       >
-        Please enter your username!
+        This field is required!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="username.touched && username.invalid && username.value !== ''"
+      >
+        Please enter a valid username! It should contain only letters and
+        digits!
       </div>
     </div>
     <div class="form-group">
@@ -32,12 +40,20 @@
         [(ngModel)]="model.password"
         name="password"
         #password="ngModel"
+        pattern="^[A-Za-z\d]{4,16}$"
       />
       <div
         class="alert alert-danger"
-        *ngIf="password.touched && password.invalid"
+        *ngIf="password.touched && password.value === ''"
       >
-        Please enter your password!
+        This field is required!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="password.touched && password.invalid && password.value !== ''"
+      >
+        Please enter a valid password! It should contain only letters and digits
+        and must be between 4 and 16 symbols!
       </div>
     </div>
     <button type="submit" class="btn btn-success" [disabled]="f.invalid">
