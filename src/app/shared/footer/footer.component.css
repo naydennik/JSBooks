@@ -1,4 +1,5 @@
-footer {
-  flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
+.footer {
+  flex-shrink: 0;
   padding: 50px;
+  margin-top: 50px;
 }

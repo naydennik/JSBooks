@@ -1,7 +1,11 @@
 #allBooks {
-  flex-shrink: 0;
+  flex-shrink: 2;
   padding: 50px;
   margin: auto;
+  position: absolute;
+  bottom: 50px;
+  left: 40%;
+  width: auto;
 }
 
 .lead {
