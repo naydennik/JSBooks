@@ -14,42 +14,63 @@
             class="form-control"
             id="new-make"
             type="text"
+            placeholder="Please enter the book's title..."
             required
             name="title"
             [(ngModel)]="createModel.title"
             #title="ngModel"
+            pattern="^[A-Z]{1}.+$"
           />
           <div
             class="alert alert-danger"
-            *ngIf="title.touched && title.invalid"
+            *ngIf="title.touched && title.value === ''"
           >
             This field is required!
           </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="title.touched && title.value !== '' && title.invalid"
+          >
+            The title should start with capital letter and should be at least
+            two symbols long!
+          </div>
         </div>
-        <div class="form-group has-success">
+        <div class="form-group">
           <h4>Subtitle</h4>
           <input
             class="form-control"
             id="new-model"
             type="text"
+            placeholder="Please enter the book's subtitle..."
             required
             name="subtitle"
             [(ngModel)]="createModel.subtitle"
             #subtitle="ngModel"
+            pattern="^[A-Z]{1}.+$"
           />
           <div
             class="alert alert-danger"
-            *ngIf="subtitle.touched && subtitle.invalid"
+            *ngIf="subtitle.touched && subtitle.value === ''"
           >
             This field is required!
           </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              subtitle.touched && subtitle.value !== '' && subtitle.invalid
+            "
+          >
+            The subtitle should start with capital letter and should be at least
+            two symbols long!
+          </div>
         </div>
-        <div class="form-group has-danger">
+        <div class="form-group">
           <h4>Author</h4>
           <input
-            class="form-control "
+            class="form-control"
             id="new-author"
             type="text"
+            placeholder="Please enter the book's author..."
             required
             name="author"
             [(ngModel)]="createModel.author"
@@ -58,9 +79,16 @@
           />
           <div
             class="alert alert-danger"
-            *ngIf="author.touched && author.invalid"
+            *ngIf="author.touched && author.value === ''"
           >
-            This field is required! The name should start with capital letter!
+            This field is required!
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="author.touched && author.value !== '' && author.invalid"
+          >
+            The author's name should start with capital letter and should be at
+            least 2 symbols long!
           </div>
         </div>
         <div class="form-group">
@@ -69,6 +97,7 @@
             class="form-control"
             id="new-image"
             type="text"
+            placeholder="Please enter the book's image URL..."
             required
             name="imageUrl"
             [(ngModel)]="createModel.imageUrl"
@@ -82,9 +111,10 @@
           />
           <div
             class="alert alert-danger"
-            *ngIf="imageUrl.touched && imageUrl.invalid"
+            *ngIf="imageUrl.touched && imageUrl.value === ''"
           >
-            This field is required!
+            This field is required! Please enter a correct URL! If the link is
+            correct, you will see a preview of the image.
           </div>
         </div>
         <div class="form-group">
@@ -95,18 +125,28 @@
             class="form-control"
             id="new-description"
             type="text"
+            placeholder="Please enter the book's description..."
             required
             name="description"
             [(ngModel)]="createModel.description"
             #description="ngModel"
             pattern="^.{10,}$"
           ></textarea>
-
           <div
             class="alert alert-danger"
-            *ngIf="description.touched && description.invalid"
+            *ngIf="description.touched && description.value === ''"
           >
-            This field is required! Description must be more than 10 symbols!
+            This field is required!
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              description.touched &&
+              description.value !== '' &&
+              description.invalid
+            "
+          >
+            The description should be more than 10 symbols!
           </div>
         </div>
         <div class="form-group">
@@ -115,15 +155,25 @@
             class="form-control"
             id="new-isbn"
             type="text"
+            placeholder="Please enter the book's ISBN..."
             required
             name="isbn"
             [(ngModel)]="createModel.isbn"
             #isbn="ngModel"
             pattern="^[\d]{13}$"
           />
-          <div class="alert alert-danger" *ngIf="isbn.touched && isbn.invalid">
-            This field is required! ISBN should contain only digits and should
-            be 13 symbols long!
+          <div
+            class="alert alert-danger"
+            *ngIf="isbn.touched && isbn.value === ''"
+          >
+            This field is required!
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="isbn.touched && isbn.value !== '' && isbn.invalid"
+          >
+            ISBN should contain only digits and should be exactly 13 symbols
+            long!
           </div>
         </div>
         <div class="form-group">
@@ -133,15 +183,25 @@
             id="new-publisher"
             required
             type="text"
+            placeholder="Please enter the book's publisher..."
             name="publisher"
             [(ngModel)]="createModel.publisher"
             #publisher="ngModel"
+            pattern="^.{2,}$"
           />
           <div
             class="alert alert-danger"
-            *ngIf="publisher.touched && publisher.invalid"
+            *ngIf="publisher.touched && publisher.value === ''"
           >
             This field is required!
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              publisher.touched && publisher.value !== '' && publisher.invalid
+            "
+          >
+            The publisher's name should be at least 2 symbols long!
           </div>
         </div>
         <div class="form-group">
@@ -150,16 +210,27 @@
             class="form-control"
             id="new-published"
             type="text"
+            placeholder="Please enter the book's publishing date..."
+            placeholder="yyyy-mm-dd"
             required
             name="published"
             [(ngModel)]="createModel.published"
             #published="ngModel"
+            pattern="^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$"
           />
           <div
             class="alert alert-danger"
-            *ngIf="published.touched && published.invalid"
+            *ngIf="published.touched && published.value === ''"
           >
             This field is required!
+          </div>
+          <div
+            class="alert alert-danger"
+            *ngIf="
+              published.touched && published.value !== '' && published.invalid
+            "
+          >
+            Please enter correct date in the format 'yyyy-mm-dd'!
           </div>
         </div>
         <div class="form-group">
@@ -168,6 +239,7 @@
             class="form-control"
             id="new-published"
             type="number"
+            placeholder="Please enter the book's number of pages..."
             required
             name="pages"
             [(ngModel)]="createModel.pages"
@@ -176,34 +248,40 @@
           />
           <div
             class="alert alert-danger"
-            *ngIf="pages.touched && pages.invalid"
+            *ngIf="pages.touched && pages.value === ''"
           >
-            This field is required! The input should be a number!
+            This field is required!
           </div>
-          <div class="form-group">
-            <h4>Official Website</h4>
-            <input
-              class="form-control"
-              id="new-website"
-              required
-              type="url"
-              name="website"
-              [(ngModel)]="createModel.website"
-              #website="ngModel"
-            />
-            <div
-              class="alert alert-danger"
-              *ngIf="website.touched && website.invalid"
-            >
-              This field is required!
-            </div>
-            <input
-              type="submit"
-              class="btn btn-primary"
-              value="Create"
-              [disabled]="createForm.invalid"
-            />
+          <div
+            class="alert alert-danger"
+            *ngIf="pages.touched && pages.value !== '' && pages.invalid"
+          >
+            The number of pages should be a number!
           </div>
+        </div>
+        <div class="form-group">
+          <h4>Official Website</h4>
+          <input
+            class="form-control"
+            id="new-website"
+            required
+            type="url"
+            name="website"
+            [(ngModel)]="createModel.website"
+            #website="ngModel"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="website.touched && website.invalid"
+          >
+            This field is required!
+          </div>
+          <input
+            type="submit"
+            class="btn btn-primary"
+            value="Create"
+            [disabled]="createForm.invalid"
+          />
         </div>
       </div>
     </div>

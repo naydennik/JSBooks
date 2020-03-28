@@ -18,7 +18,18 @@ export class BooksCreateComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {
-    this.createModel = new CreateModel("", "", "", "", 0, "", "", "", "", "");
+    this.createModel = new CreateModel(
+      "",
+      "",
+      "",
+      "",
+      null,
+      "",
+      "",
+      "",
+      "",
+      ""
+    );
   }
 
   ngOnInit(): void {}
