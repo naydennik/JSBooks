@@ -7,7 +7,7 @@ import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
   model: LoginModel;
@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(
-      data => {
+      (data) => {
         this.router.navigate(["books/all"]);
         this.toastr.success("Successfully logged in!", "Success");
       },
-      err => {
+      (err) => {
         this.toastr.error(err.error.description, "Error");
       }
     );

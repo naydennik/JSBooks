@@ -10,14 +10,14 @@ const routes: Route[] = [
   { path: "create", component: BooksCreateComponent },
   {
     path: "details/:id",
-    component: BooksDetailsComponent
+    component: BooksDetailsComponent,
   },
 
-  { path: "details/:id/edit", component: BooksEditComponent }
+  { path: "details/:id/edit", component: BooksEditComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class BooksRoutingModule {}
