@@ -10,7 +10,7 @@ const loginUrl = `https://baas.kinvey.com/user/${appKey}/login`;
 const logoutUrl = `https://baas.kinvey.com/user/${appKey}/_logout`;
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AuthService {
   private currentAuthtoken: string;
@@ -30,11 +30,12 @@ export class AuthService {
   }
 
   checkIfLogged() {
-    return localStorage.getItem("authtoken") === this.currentAuthtoken;
+    // return sessionStorage.getItem("authtoken") === this.currentAuthtoken;
+    return sessionStorage.getItem("authtoken") !== null;
   }
 
   checkIfAdmin() {
-    return localStorage.getItem("id") === adminId;
+    return sessionStorage.getItem("id") === adminId;
   }
 
   get authtoken() {

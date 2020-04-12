@@ -5,6 +5,12 @@
       <br />
     </div>
   </div>
+  <input
+    type="button"
+    class="btn btn-primary"
+    value="Return to Books"
+    routerLink="/books/all"
+  />
   <form #b="ngForm" (ngSubmit)="edit()">
     <div class="row space-top">
       <div class="col-md-4">
@@ -65,7 +71,7 @@
         <div class="form-group">
           <h4>Author</h4>
           <input
-            class="form-control "
+            class="form-control"
             id="new-author"
             type="text"
             required
@@ -270,7 +276,7 @@
         <input
           type="submit"
           class="btn btn-primary"
-          value="Edit"
+          value="Edit Book"
           [disabled]="b.invalid"
         />
       </div>

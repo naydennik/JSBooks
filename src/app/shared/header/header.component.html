@@ -48,13 +48,15 @@
             <a class="dropdown-item" routerLink="books/all" (click)="toggle()"
               >All Books</a
             >
-            <div class="dropdown-divider"></div>
-            <a
-              class="dropdown-item"
-              routerLink="books/create"
-              (click)="toggle()"
-              >Create Book</a
-            >
+            <div *ngIf="authService.checkIfAdmin()">
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item"
+                routerLink="books/create"
+                (click)="toggle()"
+                >Create Book</a
+              >
+            </div>
           </div>
         </li>
         <li class="nav-item">

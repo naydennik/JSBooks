@@ -6,7 +6,7 @@ import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.css"]
+  styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
   dropdown: string = "dropdown-menu";
@@ -26,13 +26,13 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout().subscribe(
-      data => {
-        localStorage.clear();
+      (data) => {
+        sessionStorage.clear();
         this.authService.authtoken = "";
         this.router.navigate(["home"]);
         this.toastr.success("Successfully logged out!", "Success");
       },
-      err => {
+      (err) => {
         this.toastr.error(err.error.description, "Error");
       }
     );

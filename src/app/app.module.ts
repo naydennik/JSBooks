@@ -16,6 +16,7 @@ import { HomeComponent } from "./home/home.component";
 import { NgxPaginationModule } from "ngx-pagination";
 import { AuthModule } from "./auth/auth.module";
 import { BooksModule } from "./books/books.module";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BooksModule } from "./books/books.module";
     HomeComponent,
     SharedComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

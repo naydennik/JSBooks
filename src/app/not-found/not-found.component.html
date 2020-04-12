@@ -1,0 +1,29 @@
+<div>
+  <div class="container py-5">
+    <div class="row h-100 align-items-center">
+      <div class="col-lg-6">
+        <h1 class="display-1">Oops!</h1>
+        <div class="lead text-muted mb-0">
+          <h2>
+            404 Not Found
+          </h2>
+          <div class="error-details">
+            Sorry, an error has occured, Requested page not found!
+          </div>
+          <template
+            *ngIf="!authService.checkIfLogged()"
+            routerLink="/home"
+            class="btn btn-primary btn-lg"
+            >Take Me Home</template
+          >
+          <template
+            *ngIf="authService.checkIfLogged()"
+            routerLink="/books/all"
+            class="btn btn-primary btn-lg"
+            >Take Me Home</template
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

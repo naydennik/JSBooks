@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpEvent,
   HttpErrorResponse,
-  HttpInterceptor
+  HttpInterceptor,
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
@@ -27,15 +27,15 @@ export class TokenInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           Authorization: `Basic ${btoa(`${appKey}:${appSecret}`)}`,
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       });
     } else {
       request = request.clone({
         setHeaders: {
-          Authorization: `Kinvey ${localStorage.getItem("authtoken")}`,
-          "Content-Type": "application/json"
-        }
+          Authorization: `Kinvey ${sessionStorage.getItem("authtoken")}`,
+          "Content-Type": "application/json",
+        },
       });
     }
 
@@ -50,9 +50,9 @@ export class TokenInterceptor implements HttpInterceptor {
 
   private successfulLoginData(data) {
     this.authService.authtoken = data["_kmd"]["authtoken"];
-    localStorage.setItem("authtoken", data["_kmd"]["authtoken"]);
-    localStorage.setItem("id", data["_id"]);
-    localStorage.setItem("username", data["username"]);
+    sessionStorage.setItem("authtoken", data["_kmd"]["authtoken"]);
+    sessionStorage.setItem("id", data["_id"]);
+    sessionStorage.setItem("username", data["username"]);
     this.router.navigate(["/books/all"]);
   }
 }
