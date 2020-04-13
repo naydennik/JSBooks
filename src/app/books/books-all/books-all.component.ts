@@ -1,5 +1,4 @@
 import { Component, OnInit, Injectable } from "@angular/core";
-import { Observable } from "rxjs";
 
 import { BooksModel } from "../models/books.model";
 import { BooksService } from "../books.service";
@@ -8,7 +7,7 @@ import { BooksService } from "../books.service";
   selector: "app-books-all",
   providers: [BooksService],
   templateUrl: "./books-all.component.html",
-  styleUrls: ["./books-all.component.css"]
+  styleUrls: ["./books-all.component.css"],
 })
 @Injectable()
 export class BooksAllComponent implements OnInit {
@@ -19,7 +18,7 @@ export class BooksAllComponent implements OnInit {
   constructor(private booksService: BooksService) {}
 
   ngOnInit(): void {
-    this.booksService.getAllBooks().subscribe(data => {
+    this.booksService.getAllBooks().subscribe((data) => {
       this.books = data;
     });
   }

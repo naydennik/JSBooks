@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { LoginModel } from "./models/login.model";
 import { RegisterModel } from "./models/register.model";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 const appKey = "kid_rkQIJij8U";
 const adminId = "5e7e26e535ddd40016cdc370";
@@ -13,36 +15,56 @@ const logoutUrl = `https://baas.kinvey.com/user/${appKey}/_logout`;
   providedIn: "root",
 })
 export class AuthService {
-  private currentAuthtoken: string;
+  errMessage: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   login(model: LoginModel) {
-    return this.http.post(loginUrl, JSON.stringify(model));
+    return this.http.post(loginUrl, JSON.stringify(model)).subscribe(
+      (data) => {
+        this.toastr.success("Successfully logged in!", "Success");
+      },
+      (err) => {
+        this.toastr.error(err.error.description, "Error");
+      }
+    );
   }
 
   register(model: RegisterModel) {
-    return this.http.post(registerUrl, JSON.stringify(model));
+    return this.http.post(registerUrl, JSON.stringify(model)).subscribe(
+      (data) => {
+        this.router.navigate(["auth/login"]);
+        this.toastr.success("Successfully registered!", "Success");
+      },
+      (err) => {
+        this.errMessage = err.error.description;
+        this.toastr.error(err.error.description, "Error");
+      }
+    );
   }
 
   logout() {
-    return this.http.post(logoutUrl, {});
+    return this.http.post(logoutUrl, {}).subscribe(
+      (data) => {
+        sessionStorage.clear();
+        this.router.navigate(["home"]);
+        this.toastr.success("Successfully logged out!", "Success");
+      },
+      (err) => {
+        this.toastr.error(err.error.description, "Error");
+      }
+    );
   }
 
   checkIfLogged() {
-    // return sessionStorage.getItem("authtoken") === this.currentAuthtoken;
     return sessionStorage.getItem("authtoken") !== null;
   }
 
   checkIfAdmin() {
     return sessionStorage.getItem("id") === adminId;
-  }
-
-  get authtoken() {
-    return this.currentAuthtoken;
-  }
-
-  set authtoken(value: string) {
-    this.currentAuthtoken = value;
   }
 }

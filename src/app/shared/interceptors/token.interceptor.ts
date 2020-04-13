@@ -3,7 +3,6 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpErrorResponse,
   HttpInterceptor,
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -18,7 +17,7 @@ const appSecret = "8c58a51391de4c9cb5e0279302d15bca";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private router: Router) {}
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -49,7 +48,6 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private successfulLoginData(data) {
-    this.authService.authtoken = data["_kmd"]["authtoken"];
     sessionStorage.setItem("authtoken", data["_kmd"]["authtoken"]);
     sessionStorage.setItem("id", data["_id"]);
     sessionStorage.setItem("username", data["username"]);
